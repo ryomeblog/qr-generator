@@ -2,14 +2,16 @@ const ErrorCodes = {
     FILE_NOT_FOUND: 'E0001',
     FILE_READ_ERROR: 'E0002',
     INVALID_OPTION: 'E0003',
-    WRITE_ERROR: 'E0004'
+    WRITE_ERROR: 'E0004',
+    INVALID_COLOR: 'E0005'
 };
 
 const ErrorMessages = {
     [ErrorCodes.FILE_NOT_FOUND]: 'Input file not found: {path}',
     [ErrorCodes.FILE_READ_ERROR]: 'Failed to read file: {path}',
     [ErrorCodes.INVALID_OPTION]: 'Invalid {option}: {value} ({details})',
-    [ErrorCodes.WRITE_ERROR]: 'Failed to write output file: {path}'
+    [ErrorCodes.WRITE_ERROR]: 'Failed to write output file: {path}',
+    [ErrorCodes.INVALID_COLOR]: 'Invalid color format: {color} (must be #RRGGBB format)'
 };
 
 class QRGeneratorError extends Error {

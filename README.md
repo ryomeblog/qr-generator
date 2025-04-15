@@ -2,11 +2,23 @@
 
 ## 概要
 テキストファイルの内容をQRコードに変換し、PNG形式で出力するコマンドラインツールです。
+カスタムカラーでQRコードを生成することもできます。
 
 ## インストール方法
+
+### グローバルインストール（推奨）
 ```bash
-npm install
+npm install -g @ryome/qr-generator
 ```
+
+これにより、`qr-generator` コマンドがグローバルで使用可能になります。
+
+### ローカルインストール
+```bash
+npm install @ryome/qr-generator
+```
+
+この場合は、`npx qr-generator` として実行する必要があります。
 
 ## 使用方法
 
@@ -20,11 +32,13 @@ qr-generator [オプション] [ファイルパス]
 ### オプション
 ```bash
 Options:
-  -s, --size <number>     QRコードのサイズ（ピクセル）(デフォルト: 256)
-  -e, --error <L|M|Q|H>   エラー訂正レベル (デフォルト: M)
-  -m, --margin <number>   マージン（セル単位）(デフォルト: 4)
-  -o, --output <path>     出力ファイル名 (デフォルト: qr-output.png)
-  -h, --help             ヘルプを表示
+  -s, --size <number>      QRコードのサイズ（ピクセル）(デフォルト: 256)
+  -e, --error <L|M|Q|H>    エラー訂正レベル (デフォルト: M)
+  -m, --margin <number>    マージン（セル単位）(デフォルト: 4)
+  -o, --output <path>      出力ファイル名 (デフォルト: qr-output.png)
+  -d, --dark <color>       QRコードの暗い部分の色 (デフォルト: #000000)
+  -l, --light <color>      QRコードの明るい部分の色 (デフォルト: #ffffff)
+  -h, --help              ヘルプを表示
 ```
 
 ### 使用例
@@ -41,9 +55,18 @@ qr-generator -s 400 -e H input.txt
 # 出力ファイル名を指定
 qr-generator -o custom-qr.png input.txt
 
+# QRコードの色を指定（赤色のQRコード）
+qr-generator -d "#FF0000" -l "#FFFFFF" input.txt
+
 # すべてのオプションを指定
-qr-generator -s 400 -e H -m 2 -o custom-qr.png input.txt
+qr-generator -s 400 -e H -m 2 -d "#000080" -l "#FFFFCC" -o custom-qr.png input.txt
+
+# npxを使用する場合（ローカルインストール時）
+npx qr-generator -s 400 input.txt
 ```
+
+## 必要要件
+- Node.js 14.0.0以上
 
 ## トラブルシューティング
 
@@ -93,5 +116,22 @@ Error [E0004]: Failed to write output file: ./qr-output.png
 - ディスク容量が十分か確認
 - 出力ファイルが他のプロセスによってロックされていないか確認
 
+#### E0005: INVALID_COLOR
+不正な色指定の場合に発生します。
+```
+Error [E0005]: Invalid color format: invalid-color (must be #RRGGBB format)
+詳細: カラーコードは #RRGGBB 形式で指定してください（例: #FF0000）
+```
+**対処方法:**
+- カラーコードは#で始まる6桁の16進数で指定
+- 大文字小文字は区別しない（#ff0000も#FF0000も有効）
+- 3桁の短縮形式は使用不可（#FFFは無効）
+
 ## ライセンス
 MIT License - 詳細は[LICENSE](LICENSE)ファイルを参照してください。
+
+## 作者
+ryome
+
+## バグ報告
+バグを見つけた場合は、[GitHub Issues](https://github.com/ryome/qr-generator/issues)に報告してください。

@@ -8,8 +8,8 @@ class QRGenerator {
             errorCorrectionLevel: options.error || 'M',
             margin: options.margin || 4,
             color: {
-                dark: '#000000',
-                light: '#ffffff'
+                dark: options.dark || '#000000',
+                light: options.light || '#FFFFFF'
             }
         };
     }
@@ -63,6 +63,21 @@ class QRGenerator {
             throw new QRGeneratorError(
                 ErrorCodes.INVALID_OPTION,
                 { option: 'margin', value: this.options.margin, details: 'マージンは0から10の間で指定してください' }
+            );
+        }
+
+        // 色のフォーマット検証
+        const colorRegex = /^#[0-9A-Fa-f]{6}$/;
+        if (!colorRegex.test(this.options.color.dark)) {
+            throw new QRGeneratorError(
+                ErrorCodes.INVALID_COLOR,
+                { color: this.options.color.dark }
+            );
+        }
+        if (!colorRegex.test(this.options.color.light)) {
+            throw new QRGeneratorError(
+                ErrorCodes.INVALID_COLOR,
+                { color: this.options.color.light }
             );
         }
     }

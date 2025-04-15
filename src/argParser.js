@@ -14,6 +14,8 @@ class ArgumentParser {
                 .option('-e, --error <level>', 'エラー訂正レベル', this.validateErrorLevel, 'M')
                 .option('-m, --margin <number>', 'マージン（セル単位）', this.validateMargin, 4)
                 .option('-o, --output <path>', '出力ファイル名', 'qr-output.png')
+                .option('-d, --dark <color>', 'QRコードの暗い部分の色', this.validateColor, '#000000')
+                .option('-l, --light <color>', 'QRコードの明るい部分の色', this.validateColor, '#FFFFFF')
                 .argument('[input]', '入力ファイル', DEFAULT_INPUT);
 
             program.parse(args);
@@ -23,7 +25,6 @@ class ArgumentParser {
             
             return {
                 ...options,
-                // 明示的に入力ファイルを設定
                 input: inputArg || DEFAULT_INPUT
             };
         } catch (error) {
@@ -55,6 +56,17 @@ class ArgumentParser {
             throw new Error('マージンは0から10の間で指定してください');
         }
         return margin;
+    }
+
+    static validateColor(value) {
+        const colorRegex = /^#[0-9A-Fa-f]{6}$/;
+        if (!colorRegex.test(value)) {
+            throw new QRGeneratorError(
+                ErrorCodes.INVALID_COLOR,
+                { color: value }
+            );
+        }
+        return value.toUpperCase();
     }
 }
 

@@ -1,23 +1,46 @@
 {
-  "name": "qr-generator",
+  "name": "@ryome/qr-generator",
   "version": "1.0.0",
-  "description": "QRコード生成ツール",
+  "description": "テキストファイルの内容からQRコードを生成するCLIツール",
   "main": "src/index.js",
   "bin": {
     "qr-generator": "./bin/qr-generator"
   },
+  "files": [
+    "bin/",
+    "src/",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "start": "node src/index.js"
   },
   "keywords": [
     "qr",
+    "qrcode",
     "generator",
-    "cli"
+    "cli",
+    "color",
+    "png"
   ],
-  "author": "",
+  "author": "ryome",
   "license": "MIT",
   "dependencies": {
     "commander": "^11.0.0",
     "qrcode": "^1.5.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ryome/qr-generator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ryome/qr-generator/issues"
+  },
+  "homepage": "https://github.com/ryome/qr-generator#readme",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
