@@ -134,4 +134,4 @@ MIT License - 詳細は[LICENSE](LICENSE)ファイルを参照してください
 ryome
 
 ## バグ報告
-バグを見つけた場合は、[GitHub Issues](https://github.com/ryome/qr-generator/issues)に報告してください。
+バグを見つけた場合は、[GitHub Issues](https://github.com/ryomeblog/qr-generator/issues)に報告してください。
