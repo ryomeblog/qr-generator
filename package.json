@@ -1,6 +1,6 @@
 {
   "name": "@ryome/qr-generator",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "テキストファイルの内容からQRコードを生成するCLIツール",
   "main": "src/index.js",
   "bin": {
