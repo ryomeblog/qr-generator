@@ -1,0 +1,1 @@
+https://docs.npmjs.com/cli/v9/configuring-npm/install?v=true

@@ -1,0 +1,23 @@
+{
+  "name": "qr-generator",
+  "version": "1.0.0",
+  "description": "QRコード生成ツール",
+  "main": "src/index.js",
+  "bin": {
+    "qr-generator": "./bin/qr-generator"
+  },
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "keywords": [
+    "qr",
+    "generator",
+    "cli"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^11.0.0",
+    "qrcode": "^1.5.3"
+  }
+}
